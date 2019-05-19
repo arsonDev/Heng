@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <!--<data>-->
+        <!--<variable name="vm" type="pl.arson_pjoter.heng.view.viewmodel.MainViewModel"/>-->
+    <!--</data>-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" app:srcCompat="@drawable/man"
+                android:id="@+id/imageView"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="32dp" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/textView" app:layout_constraintVertical_bias="0.48000002"
+                app:layout_constraintVertical_chainStyle="packed"/>
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text=""
+                android:maxLines="1"
+                android:typeface="sans"
+                android:textStyle="bold"
+                android:ems="10"
+                android:id="@+id/editText" android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent" tools:ignore="MissingConstraints"
+                android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/textView"
+                android:layout_marginBottom="32dp" app:layout_constraintBottom_toTopOf="@+id/textView3"/>
+        <TextView
+                android:text="Podaj swoje imię"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/imageView"
+                android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/editText"/>
+        <android.support.v7.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/switch1"
+                android:showText="false" android:splitTrack="false"
+                android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/textSex"/>
+
+        <com.mohammedalaa.seekbar.RangeSeekBarView
+                android:id="@+id/range_seekbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:barHeight="@dimen/value_bar_barHeight"
+                app:baseColor="@color/yellow"
+                app:circleRadius="@dimen/value_bar_circleRadius"
+                app:circleTextColor="@color/black"
+                app:circleTextSize="@dimen/value_bar_circleTextSize"
+                app:fillColor="@color/yellow_light"
+                app:currentValue="24"
+                app:minValue="10"
+                app:maxValue="99"
+                app:stepValue="1"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="32dp"
+                app:layout_constraintBottom_toTopOf="@+id/textView2" android:layout_marginTop="8dp"/>
+
+        <TextView
+                android:text="Wybierz swoją płeć"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="16dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginTop="32dp"
+                app:layout_constraintTop_toBottomOf="@+id/range_seekbar"
+        />
+
+        <TextView
+                android:text="@{vm.sexText}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textSex"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"/>
+
+        <TextView
+                android:text="Podaj swój wiek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView3" android:layout_marginTop="32dp"
+                app:layout_constraintTop_toBottomOf="@+id/editText" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp" app:layout_constraintBottom_toTopOf="@+id/range_seekbar"
+                android:layout_marginBottom="8dp" app:layout_constraintVertical_chainStyle="spread"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

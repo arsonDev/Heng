@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Heng</string>
+    <string name="mainsubtitle">Aplikacja stworzona po to aby pomóc Ci stać się lepszym człowiekiem !</string>
+    <string name="main_title">Witaj w Heng</string>
+    <string name="second_main_title">Pomożemy ci zwalczyć uzależnienia</string>
+    <string name="second_main_subtitle">Odpowiedz na kilka prostych pytań</string>
+</resources>
