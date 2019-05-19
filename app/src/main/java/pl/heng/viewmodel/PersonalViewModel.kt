@@ -1,17 +1,18 @@
 package pl.heng.viewmodel
 
-import android.app.Application
+import android.database.Observable
 import androidx.databinding.ObservableBoolean
-import androidx.lifecycle.AndroidViewModel
+import androidx.databinding.ObservableField
+import androidx.lifecycle.ViewModel
 
-class PersonalViewModel(application: Application) : AndroidViewModel(application) {
+class PersonalViewModel : ViewModel() {
 
     val sex = ObservableBoolean(false)
-    var sexText = Sex.Kobieta;
+    var sexText = ObservableField<Sex>(Sex.Kobieta)
 
-    fun onSexChange(){
+    fun onSexChange() {
         sex.set(!sex.get())
-        sexText = Sex.valueOf(Sex.values().equals(sexText).not().toString())
+        if (sex.get()) sexText.set(Sex.Mężczyzna) else sexText.set(Sex.Kobieta)
     }
 
     enum class Sex{

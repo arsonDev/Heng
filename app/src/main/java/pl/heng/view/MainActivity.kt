@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         actionBar?.hide()
         supportActionBar?.hide()
         mPager.adapter = pagerAdapter
-        mPager.setPageTransformer(true, DepthPageTransformer())
+        mPager.setPageTransformer(true, ZoomOutPageTransformer())
     }
 
     override fun onBackPressed() {
