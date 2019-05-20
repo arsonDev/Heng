@@ -11,6 +11,7 @@ import pl.arson_pjoter.heng.view.fragment.SplashScreenSlideFragment
 import pl.heng.R
 import pl.heng.fragment.AboutNewHabitFragment
 import pl.heng.fragment.AboutSlideFragment
+import pl.heng.fragment.NewHabitBaseSlideFragment
 import pl.heng.fragment.PersonalizationScreenSlideFragment
 
 private const val NUM_PAGES = 5;
@@ -43,7 +44,8 @@ class MainActivity : AppCompatActivity() {
             SplashScreenSlideFragment(),
             AboutSlideFragment(),
             PersonalizationScreenSlideFragment(),
-            AboutNewHabitFragment()
+            AboutNewHabitFragment(),
+            NewHabitBaseSlideFragment()
         )
 
         override fun getCount(): Int = fragmentList.size

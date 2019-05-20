@@ -23,10 +23,4 @@ class PersonalizationScreenSlideFragment : Fragment() {
         binding.vm = viewmodel
         return binding.root
     }
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        model = activity?.run {
-//            ViewModelProviders.of(this).get(PersonalViewModel()::class.java)
-//        }?: throw Exception("Invalid Viewmodel")
-//        super.onCreate(savedInstanceState)
-//    }
 }
