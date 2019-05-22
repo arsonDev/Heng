@@ -11,6 +11,7 @@ class AboutAppViewModel : ViewModel() {
     val isLoading : ObservableBoolean = ObservableBoolean(true)
 
     fun AboutAppViewModel(){
-
+        Thread.sleep(3000)
+        isLoading.set(true)
     }
 }

@@ -1,12 +1,15 @@
 package pl.heng.view
 
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
+import kotlinx.android.synthetic.main.activity_main.*
 import pl.heng.R
 import pl.heng.fragment.AboutNewHabitFragment
 import pl.heng.fragment.AboutAppFragment
@@ -28,6 +31,11 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
         mPager.adapter = pagerAdapter
         mPager.setPageTransformer(true, ZoomOutPageTransformer())
+        floatingActionButton.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(v: View?) {
+                runNextSlide()
+            }
+        })
     }
 
     override fun onBackPressed() {
@@ -49,5 +57,13 @@ class MainActivity : AppCompatActivity() {
         override fun getCount(): Int = fragmentList.size
 
         override fun getItem(position: Int): Fragment = fragmentList.get(position)
+    }
+
+    fun runNextSlide(){
+        if (mPager.currentItem < mPager.childCount)
+            mPager.setCurrentItem(mPager.currentItem+1,true)
+        else
+//            startActivity();
+            Toast.makeText(this,"Start new activity",Toast.LENGTH_SHORT).show()
     }
 }

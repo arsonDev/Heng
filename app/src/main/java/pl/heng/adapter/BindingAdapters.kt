@@ -3,6 +3,7 @@ package pl.heng.adapter
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.databinding.BindingAdapter
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.about_slide_fragment.*
 import pl.heng.R
 
