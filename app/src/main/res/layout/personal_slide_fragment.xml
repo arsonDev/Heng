@@ -4,6 +4,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
         <data>
+                <import type="android.view.View"/>
                 <variable name="vm" type="pl.heng.viewmodel.PersonalViewModel"/>
         </data>
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -11,9 +12,10 @@
                 android:layout_height="match_parent"
                 android:background="@color/teal_light">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" app:srcCompat="@drawable/man"
+                android:layout_height="wrap_content"
+                android:src="@{vm.sex.get() ? @drawable/man : @drawable/woman}"
                 android:id="@+id/imageView"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"

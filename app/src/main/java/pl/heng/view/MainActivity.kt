@@ -7,10 +7,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
-import pl.arson_pjoter.heng.view.fragment.SplashScreenSlideFragment
 import pl.heng.R
 import pl.heng.fragment.AboutNewHabitFragment
-import pl.heng.fragment.AboutSlideFragment
+import pl.heng.fragment.AboutAppFragment
 import pl.heng.fragment.NewHabitBaseSlideFragment
 import pl.heng.fragment.PersonalizationScreenSlideFragment
 
@@ -41,8 +40,7 @@ class MainActivity : AppCompatActivity() {
 
     private inner class ScreenSlidePagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
         val fragmentList = listOf(
-            SplashScreenSlideFragment(),
-            AboutSlideFragment(),
+            AboutAppFragment(),
             PersonalizationScreenSlideFragment(),
             AboutNewHabitFragment(),
             NewHabitBaseSlideFragment()
