@@ -8,15 +8,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.room.Room
 import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_main.*
 import pl.heng.R
+import pl.heng.database.DatabaseHeng
 import pl.heng.fragment.AboutNewHabitFragment
 import pl.heng.fragment.AboutAppFragment
 import pl.heng.fragment.NewHabitBaseSlideFragment
 import pl.heng.fragment.PersonalizationScreenSlideFragment
-
-private const val NUM_PAGES = 5;
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +24,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val db = Room.databaseBuilder(
+            this,
+            DatabaseHeng::class.java,
+            "databaseHeng"
+        ).build()
+
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         val pagerAdapter = ScreenSlidePagerAdapter(supportFragmentManager)
         mPager = findViewById(R.id.pager)
