@@ -15,7 +15,7 @@
         <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@{vm.sex.get() ? @drawable/man : @drawable/woman}"
+                android:src="@{vm.sex ? @drawable/man : @drawable/woman}"
                 android:id="@+id/imageView"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:text=""
+                android:text="@{vm.name}"
                 android:textColor="@color/yellow"
                 android:maxLines="1"
                 android:textAlignment="center"
@@ -73,10 +73,10 @@
                 app:circleTextColor="@color/black"
                 app:circleTextSize="@dimen/value_bar_circleTextSize"
                 app:fillColor="@color/yellow_light"
-                app:currentValue="24"
                 app:minValue="10"
                 app:maxValue="99"
                 app:stepValue="1"
+                app:currentValue="25"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
                 app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="32dp"
@@ -119,14 +119,14 @@
                 android:layout_marginStart="8dp" app:layout_constraintBottom_toTopOf="@+id/range_seekbar"
                 android:layout_marginBottom="8dp" app:layout_constraintVertical_chainStyle="spread"/>
 
-                     <TextView
-                        android:text="Uzupełnij swoje dane"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        style="@style/TextStyle"
-                        android:id="@+id/textView7" app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginEnd="8dp"
-                        app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-                        android:layout_marginTop="24dp" app:layout_constraintTop_toTopOf="parent"/>
+             <TextView
+                android:text="Uzupełnij swoje dane"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextStyle"
+                android:id="@+id/textView7" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp" app:layout_constraintTop_toTopOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

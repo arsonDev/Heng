@@ -1,29 +1,31 @@
 package pl.heng.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.room.Room
 import androidx.viewpager.widget.ViewPager
-import kotlinx.android.synthetic.main.activity_main.*
-import pl.heng.R
+import kotlinx.android.synthetic.main.activity_intro.*
 import pl.heng.database.DatabaseHeng
-import pl.heng.fragment.AboutNewHabitFragment
 import pl.heng.fragment.AboutAppFragment
+import pl.heng.fragment.AboutNewHabitFragment
 import pl.heng.fragment.NewHabitBaseSlideFragment
-import pl.heng.fragment.PersonalizationScreenSlideFragment
+import pl.heng.fragment.PersonalSlideFragment
+import pl.heng.view.animations.ZoomOutPageTransformer
+import pl.heng.viewmodel.RootViewModel
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mPager: ViewPager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(pl.heng.R.layout.activity_intro)
 
         val db = Room.databaseBuilder(
             this,
@@ -33,16 +35,12 @@ class MainActivity : AppCompatActivity() {
 
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         val pagerAdapter = ScreenSlidePagerAdapter(supportFragmentManager)
-        mPager = findViewById(R.id.pager)
+
         actionBar?.hide()
         supportActionBar?.hide()
-        mPager.adapter = pagerAdapter
-        mPager.setPageTransformer(true, ZoomOutPageTransformer())
-        floatingActionButton.setOnClickListener(object : View.OnClickListener{
-            override fun onClick(v: View?) {
-                runNextSlide()
-            }
-        })
+        pager.adapter = pagerAdapter
+        pager.setPageTransformer(true, ZoomOutPageTransformer())
+
     }
 
     override fun onBackPressed() {
@@ -56,7 +54,7 @@ class MainActivity : AppCompatActivity() {
     private inner class ScreenSlidePagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
         val fragmentList = listOf(
             AboutAppFragment(),
-            PersonalizationScreenSlideFragment(),
+            PersonalSlideFragment(),
             AboutNewHabitFragment(),
             NewHabitBaseSlideFragment()
         )
@@ -66,11 +64,13 @@ class MainActivity : AppCompatActivity() {
         override fun getItem(position: Int): Fragment = fragmentList.get(position)
     }
 
-    fun runNextSlide(){
-        if (mPager.currentItem < mPager.childCount)
-            mPager.setCurrentItem(mPager.currentItem+1,true)
-        else
-//            startActivity();
-            Toast.makeText(this,"Start new activity",Toast.LENGTH_SHORT).show()
+    @SuppressLint("ClickableViewAccessibility")
+    private fun disableSwipe(vpager: ViewPager){
+        vpager.setOnTouchListener { v, event -> true }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun enableSwipe(vpager: ViewPager){
+        vpager.setOnTouchListener { v, event -> false }
     }
 }

@@ -1,17 +1,22 @@
 package pl.heng.viewmodel
 
-import android.app.TaskStackBuilder
 import androidx.databinding.ObservableBoolean
-import androidx.lifecycle.ViewModel
-import kotlin.concurrent.timerTask
+import org.jetbrains.anko.doAsync
 
-class AboutAppViewModel : ViewModel() {
-    // tutaj polaczenie z modelem i utworzenie lub wczytanie bazy danych, jesli dane beda istnialy po slash screen nie
-    // bedzie dalej ekranow ale juz main activity
+class AboutAppViewModel : RootViewModel() {
+
     val isLoading : ObservableBoolean = ObservableBoolean(true)
 
-    fun AboutAppViewModel(){
-        Thread.sleep(3000)
-        isLoading.set(true)
+    init {
+        aboutAppViewModel()
+    }
+
+    private fun aboutAppViewModel(){
+        doAsync {
+            // tutaj polaczneie z baza danych i sprawdzenie czy sa dany, jesli sa to otworzyc nowa kart, jesli nie to tutorial
+
+            Thread.sleep(3500)
+            isLoading.set(false)
+        }
     }
 }

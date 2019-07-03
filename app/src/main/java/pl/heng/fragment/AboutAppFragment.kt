@@ -8,19 +8,18 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import kotlinx.android.synthetic.main.about_slide_fragment.*
 import pl.heng.R
-import pl.heng.databinding.AboutSlideFragmentBinding
-import pl.heng.view.MainActivity
+import pl.heng.databinding.SlideFragmentAboutAppBinding
 import pl.heng.viewmodel.AboutAppViewModel
 
 class AboutAppFragment : Fragment() {
 
-    private val viewmodel by lazy { ViewModelProviders.of(this).get(AboutAppViewModel::class.java) }
+    val viewmodel by lazy { ViewModelProviders.of(this).get(AboutAppViewModel::class.java) }
 
     @SuppressLint("RestrictedApi")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var binding : AboutSlideFragmentBinding = DataBindingUtil.inflate(inflater,R.layout.about_slide_fragment,container,false)
+        val binding: SlideFragmentAboutAppBinding =
+            DataBindingUtil.inflate(inflater, R.layout.slide_fragment_about_app, container, false)
         binding.viewModel = viewmodel
         return binding.root
     }

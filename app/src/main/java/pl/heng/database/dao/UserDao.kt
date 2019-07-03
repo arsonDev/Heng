@@ -8,12 +8,13 @@ import pl.heng.database.model.User
 
 @Dao
 interface UserDao {
+
     @Query("SELECT * FROM user")
-    fun getUser() : User
+    suspend fun getUser() : User
 
     @Insert
-    fun insertUser(user : User)
+    suspend fun insertUser(user : User)
 
     @Delete
-    fun deleteUser(user : User)
+    suspend fun deleteUser(user: User)
 }

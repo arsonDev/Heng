@@ -40,10 +40,10 @@
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             android:layout_marginStart="8dp"/>
     <TextView
-            android:text="Aplikacja pomoże Ci \n pokonać własne słabości"
+            android:text="Aplikacja pomoże Ci \n zdobyc nowe umiejętności \noraz lepiej zarządzać czasem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="@{viewModel.isLoading().get() ? View.INVISIBLE : View.VISIBLE}"
+            android:visibility="@{viewModel.isLoading() ? View.INVISIBLE : View.VISIBLE}"
             style="@style/TextStyle"
             android:textSize="18sp"
             android:id="@+id/textView6"
