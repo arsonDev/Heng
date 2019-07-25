@@ -10,7 +10,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "pl.heng"
-        minSdkVersion 24
+        minSdkVersion 26
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -69,17 +69,12 @@ dependencies {
     androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
     //anko
     implementation 'org.jetbrains.anko:anko-common:0.9'
-
     //switchicon
     implementation 'com.github.zagum:Android-SwitchIcon:1.4.0'
-
     //lottie
     implementation 'com.airbnb.android:lottie:3.0.7'
-
-    //bubble navigation
-    implementation 'com.gauravk.bubblenavigation:bubblenavigation:1.0.7'
-
+    //material google
+    implementation 'com.google.android.material:material:1.0.0-alpha01'
 }
