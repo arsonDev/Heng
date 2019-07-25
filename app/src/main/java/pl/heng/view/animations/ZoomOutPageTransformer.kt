@@ -1,4 +1,4 @@
-package pl.heng.view
+package pl.heng.view.animations
 
 import android.view.View
 import androidx.viewpager.widget.ViewPager

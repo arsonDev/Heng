@@ -4,6 +4,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
         <data>
+                <import type="android.view.View"/>
                 <variable name="vm" type="pl.heng.viewmodel.PersonalViewModel"/>
         </data>
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -11,9 +12,10 @@
                 android:layout_height="match_parent"
                 android:background="@color/teal_light">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" app:srcCompat="@drawable/man"
+                android:layout_height="wrap_content"
+                android:src="@{vm.sex ? @drawable/man : @drawable/woman}"
                 android:id="@+id/imageView"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:text=""
+                android:text="@{vm.name}"
                 android:textColor="@color/yellow"
                 android:maxLines="1"
                 android:textAlignment="center"
@@ -49,16 +51,17 @@
                 app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/imageView"
                 android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/editText"/>
-                <androidx.appcompat.widget.SwitchCompat
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/switch1"
-                        android:onCheckedChanged="@{() -> vm.onSexChange()}"
-                        android:showText="false" android:splitTrack="false"
-                        android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
-                        tools:ignore="MissingConstraints" android:layout_marginTop="16dp"
-                        app:layout_constraintTop_toBottomOf="@+id/textSex"/>
+
+        <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/switch1"
+                android:onCheckedChanged="@{() -> vm.onSexChange()}"
+                android:showText="false" android:splitTrack="false"
+                android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/textSex"/>
 
         <com.mohammedalaa.seekbar.RangeSeekBarView
                 android:id="@+id/range_seekbar"
@@ -70,10 +73,10 @@
                 app:circleTextColor="@color/black"
                 app:circleTextSize="@dimen/value_bar_circleTextSize"
                 app:fillColor="@color/yellow_light"
-                app:currentValue="24"
                 app:minValue="10"
                 app:maxValue="99"
                 app:stepValue="1"
+                app:currentValue="25"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
                 app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="32dp"
@@ -116,25 +119,14 @@
                 android:layout_marginStart="8dp" app:layout_constraintBottom_toTopOf="@+id/range_seekbar"
                 android:layout_marginBottom="8dp" app:layout_constraintVertical_chainStyle="spread"/>
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        app:srcCompat="@drawable/next"
-                        android:id="@+id/floatingActionButton" app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginEnd="8dp" android:layout_marginBottom="8dp"
-                        app:layout_constraintBottom_toBottomOf="parent" android:layout_marginStart="8dp"
-                        app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="8dp"
-                        app:layout_constraintVertical_bias="1.0"
-                        app:layout_constraintHorizontal_bias="1.0" app:layout_constraintTop_toTopOf="parent"/>
-                <TextView
-                        android:text="Uzupełnij swoje dane"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        style="@style/TextStyle"
-                        android:id="@+id/textView7" app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginEnd="8dp"
-                        app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-                        android:layout_marginTop="24dp" app:layout_constraintTop_toTopOf="parent"/>
+             <TextView
+                android:text="Uzupełnij swoje dane"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextStyle"
+                android:id="@+id/textView7" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp" app:layout_constraintTop_toTopOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
