@@ -22,14 +22,15 @@ import pl.heng.database.repository.HabitRepository
 import pl.heng.view.MainMenu
 import java.util.*
 
+@Suppress("UNCHECKED_CAST")
 class NewHabitBaseViewModel(application: Application) : RootViewModel() {
 
     val notifyHour : ObservableField<String> = ObservableField("")
     val dateEnd : ObservableField<String> = ObservableField("")
     val isEnd : ObservableBoolean = ObservableBoolean((((dateEnd.get() != "") && (notifyHour.get() != "")) && (notifyHour.get() != "")))
-    val name : ObservableField<String> = ObservableField()
-    val desc : ObservableField<String> = ObservableField()
-    val countOfWeek : ObservableByte = ObservableByte()
+    val name : ObservableField<String> = ObservableField("")
+    val desc : ObservableField<String> = ObservableField("")
+    val countOfWeek : ObservableByte = ObservableByte(0)
     private val calendar = Calendar.getInstance()
 
     private val _reporsitory: HabitRepository by lazy {
@@ -57,8 +58,7 @@ class NewHabitBaseViewModel(application: Application) : RootViewModel() {
 
     fun onClickNotifyHour(v : View){
         TimePickerDialog(v.context, R.style.DialogTheme, TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
-            notifyHour.set("$hourOfDay:$minute")
-            checkEndButton()}
+            notifyHour.set("$hourOfDay:$minute")}
             ,calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),true).show()
     }
 
@@ -68,10 +68,6 @@ class NewHabitBaseViewModel(application: Application) : RootViewModel() {
 
     fun createHabit() {
         insert(Habit(name.get()!!,desc.get()!!,countOfWeek.get(),dateEnd.get()!!,notifyHour.get()!! ))
-    }
-
-    private fun checkEndButton() {
-        isEnd.set((dateEnd.get() != "") && (notifyHour.get() != ""))
     }
 
     private fun insert(habit: Habit) = viewModelScope.launch {

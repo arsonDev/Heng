@@ -1,6 +1,7 @@
 package pl.heng.view
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -10,18 +11,14 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.room.Room
 import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_intro.*
+import pl.heng.fragment.IntroEnd
 import pl.heng.database.DatabaseHeng
 import pl.heng.fragment.AboutAppFragment
 import pl.heng.fragment.AboutNewHabitFragment
-import pl.heng.fragment.NewHabitBaseSlideFragment
-import pl.heng.fragment.PersonalSlideFragment
-import pl.heng.view.animations.ZoomOutPageTransformer
-import pl.heng.viewmodel.RootViewModel
+import pl.heng.view.animations.FadeOutPageTransformer
 
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var mPager: ViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,30 +35,28 @@ class MainActivity : AppCompatActivity() {
 
         actionBar?.hide()
         supportActionBar?.hide()
+        tabLayout.setupWithViewPager(pager)
         pager.adapter = pagerAdapter
-        pager.setPageTransformer(true, ZoomOutPageTransformer())
-
+        pager.setPageTransformer(true, FadeOutPageTransformer())
     }
 
     override fun onBackPressed() {
-        if (mPager.currentItem == 0)
+        if (pager.currentItem == 0)
             super.onBackPressed()
-        // show do you want to close the app
         else
-            mPager.setCurrentItem(mPager.currentItem - 1, true)
+            pager.setCurrentItem(pager.currentItem - 1, true)
     }
 
     private inner class ScreenSlidePagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
         val fragmentList = listOf(
             AboutAppFragment(),
-            PersonalSlideFragment(),
             AboutNewHabitFragment(),
-            NewHabitBaseSlideFragment()
+            IntroEnd()
         )
 
         override fun getCount(): Int = fragmentList.size
 
-        override fun getItem(position: Int): Fragment = fragmentList.get(position)
+        override fun getItem(position: Int): Fragment = fragmentList[position]
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -72,5 +67,14 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("ClickableViewAccessibility")
     private fun enableSwipe(vpager: ViewPager){
         vpager.setOnTouchListener { v, event -> false }
+    }
+
+    private fun onClickNextButton() {
+        if (pager.currentItem < (pager.adapter as ScreenSlidePagerAdapter).fragmentList.size-1)
+            pager.setCurrentItem(pager.currentItem + 1, true)
+        else if (pager.currentItem == (pager.adapter as ScreenSlidePagerAdapter).fragmentList.size-1) {
+            val intent = Intent(this, MainMenu::class.java)
+            startActivity(intent)
+        }
     }
 }

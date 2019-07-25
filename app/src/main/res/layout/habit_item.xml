@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:id="@+id/habitName"
+              android:text="aaaa" app:layout_constraintTop_toTopOf="parent"
+              app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+              android:layout_marginEnd="8dp"
+              android:layout_marginTop="8dp" android:layout_marginStart="8dp"
+              app:layout_constraintHorizontal_bias="0.0"/>
+
+    <com.github.zagum.switchicon.SwitchIconView
+            android:layout_width="45dp"
+            android:layout_height="61dp"
+            android:padding="8dp"
+            app:si_animation_duration="500"
+            app:si_disabled_alpha=".3"
+            app:si_enabled="false"
+            app:si_no_dash="true"
+            app:srcCompat="@drawable/ok"
+            app:layout_constraintTop_toBottomOf="@+id/habitName"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintRight_toLeftOf="@id/switchIconView2"
+            app:layout_constraintStart_toStartOf="parent" android:id="@+id/switchIconView"
+            tools:srcCompat="@drawable/ok"/>
+
+    <com.github.zagum.switchicon.SwitchIconView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            app:si_animation_duration="500"
+            app:si_disabled_alpha=".3"
+            app:si_enabled="false"
+            app:si_no_dash="true"
+            app:srcCompat="@drawable/ok"
+            app:layout_constraintTop_toBottomOf="@+id/habitName"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/switchIconView" android:layout_marginStart="16dp"
+            android:id="@+id/switchIconView2"/>
+
+    <com.github.zagum.switchicon.SwitchIconView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            app:si_animation_duration="500"
+            app:si_disabled_alpha=".3"
+            app:si_enabled="false"
+            app:si_no_dash="true"
+            app:srcCompat="@drawable/ok"
+            app:layout_constraintTop_toBottomOf="@+id/habitName"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/switchIconView2" android:layout_marginStart="16dp"
+            android:id="@+id/switchIconView3"/>
+    <com.github.zagum.switchicon.SwitchIconView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            app:si_animation_duration="500"
+            app:si_disabled_alpha=".3"
+            app:si_enabled="false"
+            app:si_no_dash="true"
+            app:srcCompat="@drawable/ok"
+            app:layout_constraintTop_toBottomOf="@+id/habitName"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/switchIconView3" android:layout_marginStart="16dp"
+            android:id="@+id/switchIconView4"/>
+
+    <com.github.zagum.switchicon.SwitchIconView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:padding="8dp"
+            app:si_animation_duration="500"
+            app:si_disabled_alpha=".3"
+            app:si_enabled="false"
+            app:si_no_dash="true"
+            app:srcCompat="@drawable/ok"
+            app:layout_constraintTop_toBottomOf="@+id/habitName"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/switchIconView4" android:layout_marginStart="16dp"
+            android:id="@+id/switchIconView5"/>
+
+    <com.github.zagum.switchicon.SwitchIconView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:padding="8dp"
+            app:si_animation_duration="500"
+            app:si_disabled_alpha=".3"
+            app:si_enabled="false"
+            app:si_no_dash="true"
+            app:srcCompat="@drawable/ok"
+            app:layout_constraintTop_toBottomOf="@+id/habitName"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/switchIconView6" android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.github.zagum.switchicon.SwitchIconView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:padding="8dp"
+            app:si_animation_duration="500"
+            app:si_disabled_alpha=".3"
+            app:si_enabled="true"
+            app:si_no_dash="true"
+            app:srcCompat="@drawable/ok"
+            app:layout_constraintTop_toBottomOf="@+id/habitName"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/switchIconView5" android:layout_marginStart="16dp"
+            android:id="@+id/switchIconView6"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
