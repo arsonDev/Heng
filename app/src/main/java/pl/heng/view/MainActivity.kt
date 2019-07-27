@@ -2,6 +2,7 @@ package pl.heng.view
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.WindowManager
@@ -38,6 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         actionBar?.hide()
         supportActionBar?.hide()
+        tabLayout.setBackgroundColor(Color.TRANSPARENT)
         tabLayout.setupWithViewPager(pager)
         pager.adapter = pagerAdapter
         pager.setPageTransformer(true, FadeOutPageTransformer())
