@@ -3,6 +3,7 @@ package pl.heng.view
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -10,7 +11,9 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.room.Room
 import androidx.viewpager.widget.ViewPager
+import com.google.android.material.bottomappbar.BottomAppBar
 import kotlinx.android.synthetic.main.activity_intro.*
+import pl.heng.R
 import pl.heng.fragment.IntroEnd
 import pl.heng.database.DatabaseHeng
 import pl.heng.fragment.AboutAppFragment
