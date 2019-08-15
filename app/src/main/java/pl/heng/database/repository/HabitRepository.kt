@@ -5,7 +5,7 @@ import pl.heng.database.model.Habit
 
 class HabitRepository(private val habitDao: HabitDao) {
 
-    val habit: Habit = habitDao.getHabit()
+    val habits = habitDao.getHabits()
 
     suspend fun insert(habit: Habit) {
         habitDao.insertHabit(habit)

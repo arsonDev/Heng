@@ -5,15 +5,26 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlinx.android.synthetic.main.activity_main_menu.*
+import kotlinx.coroutines.*
 import pl.heng.R
+import pl.heng.adapter.HabitListAdapter
+import pl.heng.database.DatabaseHeng
+import pl.heng.database.model.Habit
 import pl.heng.fragment.AddTaskFragment
+import kotlin.coroutines.CoroutineContext
 import kotlin.system.exitProcess
 
-class MainMenu : AppCompatActivity() {
+
+class MainMenu : AppCompatActivity(), CoroutineScope {
+
+    private lateinit var mJob: Job
+    override val coroutineContext: CoroutineContext
+        get() = mJob + Dispatchers.Main
 
     private var mBottomSheetBehavior: BottomSheetBehavior<View?>? = null
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -37,11 +48,25 @@ class MainMenu : AppCompatActivity() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        mJob = Job()
         setContentView(R.layout.activity_main_menu)
+
         var bottomAppBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
         setSupportActionBar(bottomAppBar)
         configureBackdrop()
+        launch {
+            val lista = ArrayList<Habit>()
+            val adapter = HabitListAdapter(applicationContext, lista)
+            recycleList.adapter = adapter
+            recycleList.layoutManager = LinearLayoutManager(applicationContext)
+            val deffered = async(Dispatchers.Default) {
+                for (habit in DatabaseHeng.GetDatabase(applicationContext).habitDao().getHabits()) {
+                    lista.add(habit)
+                }
+            }
+            deffered.await()
+            adapter.notifyDataSetChanged()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

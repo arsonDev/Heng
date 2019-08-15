@@ -4,9 +4,7 @@ import android.app.Application
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
-import android.os.Build
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableByte
 import androidx.databinding.ObservableField
@@ -16,7 +14,6 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import pl.heng.R
 import pl.heng.database.DatabaseHeng
-import pl.heng.database.dao.HabitDao
 import pl.heng.database.model.Habit
 import pl.heng.database.repository.HabitRepository
 import pl.heng.view.MainMenu
@@ -44,9 +41,7 @@ class NewHabitBaseViewModel(application: Application) : RootViewModel() {
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
         val dpd = DatePickerDialog(v.context, R.style.DialogTheme, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-            // Display Selected date in Toast
             dateEnd.set(String.format("%d-%d-%d",dayOfMonth,month,year))
-
         }, year, month, day)
         calendar.add(Calendar.YEAR,3)
         dpd.datePicker.maxDate = calendar.timeInMillis
@@ -67,7 +62,7 @@ class NewHabitBaseViewModel(application: Application) : RootViewModel() {
     }
 
     fun createHabit() {
-        insert(Habit(name.get()!!,desc.get()!!,countOfWeek.get(),dateEnd.get()!!,notifyHour.get()!! ))
+        insert(Habit(name.get()!!, desc.get()!!, countOfWeek.get(), dateEnd.get()!!, notifyHour.get()!!))
     }
 
     private fun insert(habit: Habit) = viewModelScope.launch {

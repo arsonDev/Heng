@@ -4,12 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
 import pl.heng.database.dao.HabitDao
 import pl.heng.database.dao.UserDao
 import pl.heng.database.model.Habit
 import pl.heng.database.model.User
 
-@Database(entities = arrayOf(User::class,Habit::class),version = 2,exportSchema = false)
+@Database(entities = arrayOf(User::class,Habit::class),version = 3,exportSchema = false)
 abstract class DatabaseHeng : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun habitDao() : HabitDao
@@ -29,7 +30,8 @@ abstract class DatabaseHeng : RoomDatabase() {
                     context.applicationContext,
                     DatabaseHeng::class.java,
                     "DatabaseHeng"
-                ).build()
+                ).
+                    build()
                 INSTANCE = instance
                 return instance
             }

@@ -17,8 +17,8 @@ class FragmentHabitList : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        recycleList.adapter = HabitListAdapter(activity!!.applicationContext)
-        recycleList.layoutManager = LinearLayoutManager(activity!!.applicationContext)
+//        recycleList.adapter = HabitListAdapter(activity!!.applicationContext)
+//        recycleList.layoutManager = LinearLayoutManager(activity!!.applicationContext)
         return inflater.inflate(R.layout.fragment_fragment_habit_list, container, false)
     }
 }

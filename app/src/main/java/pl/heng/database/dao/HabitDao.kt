@@ -9,7 +9,7 @@ import pl.heng.database.model.Habit
 @Dao
 interface HabitDao {
     @Query("SELECT * FROM habit")
-    fun getHabit() : Habit
+    fun getHabits() : List<Habit>
 
     @Query("SELECT * FROM habit WHERE uid = :idHabit ")
     fun getHabitById(idHabit : Int) : Habit
