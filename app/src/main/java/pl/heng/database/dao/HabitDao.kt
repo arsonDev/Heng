@@ -1,5 +1,6 @@
 package pl.heng.database.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -9,7 +10,7 @@ import pl.heng.database.model.Habit
 @Dao
 interface HabitDao {
     @Query("SELECT * FROM habit")
-    fun getHabits() : List<Habit>
+    fun getHabits() : LiveData<List<Habit>>
 
     @Query("SELECT * FROM habit WHERE uid = :idHabit ")
     fun getHabitById(idHabit : Int) : Habit

@@ -47,6 +47,10 @@ class AddTaskFragment : BottomSheetDialogFragment() {
                 btnNotifyTime.setOnClickListener {
                     notifyHourChange()
                 }
+                btnEndDate.setOnClickListener {
+                    //todo: dodac koncowa date
+                }
+
             }
             window?.setDimAmount(0.2f)
         }
@@ -55,8 +59,7 @@ class AddTaskFragment : BottomSheetDialogFragment() {
     private fun notifyHourChange(){
         val picker = TimePickerDialog(this.context,R.style.DialogTheme,
             TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
-                viewModel.min.set(minute)
-                viewModel.hour.set(hourOfDay)
+//                viewModel.notifyTime = "${hourOfDay}:${minute}"
             }, LocalDateTime.now().hour, LocalDateTime.now().minute,true)
         picker.show()
     }

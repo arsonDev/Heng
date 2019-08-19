@@ -31,8 +31,7 @@ class NewHabitBaseViewModel(application: Application) : RootViewModel() {
     private val calendar = Calendar.getInstance()
 
     private val _reporsitory: HabitRepository by lazy {
-        val habitDao = DatabaseHeng.GetDatabase(application).habitDao()
-        HabitRepository(habitDao)
+        HabitRepository(application)
     }
 
     fun onClickEndDate(v : View){
@@ -62,7 +61,7 @@ class NewHabitBaseViewModel(application: Application) : RootViewModel() {
     }
 
     fun createHabit() {
-        insert(Habit(name.get()!!, desc.get()!!, countOfWeek.get(), dateEnd.get()!!, notifyHour.get()!!))
+//        insert(Habit(name.get()!!, desc.get()!!, countOfWeek.get(), dateEnd.get()!!, notifyHour.get()!!))
     }
 
     private fun insert(habit: Habit) = viewModelScope.launch {

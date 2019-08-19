@@ -10,7 +10,7 @@ import pl.heng.database.dao.UserDao
 import pl.heng.database.model.Habit
 import pl.heng.database.model.User
 
-@Database(entities = arrayOf(User::class,Habit::class),version = 3,exportSchema = false)
+@Database(entities = arrayOf(User::class,Habit::class),version = 1,exportSchema = false)
 abstract class DatabaseHeng : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun habitDao() : HabitDao

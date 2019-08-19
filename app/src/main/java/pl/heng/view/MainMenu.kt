@@ -5,17 +5,21 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlinx.android.synthetic.main.activity_main_menu.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import pl.heng.R
 import pl.heng.adapter.HabitListAdapter
-import pl.heng.database.DatabaseHeng
 import pl.heng.database.model.Habit
 import pl.heng.fragment.AddTaskFragment
+import pl.heng.viewmodel.MainMenuViewModel
 import kotlin.coroutines.CoroutineContext
 import kotlin.system.exitProcess
 
@@ -25,6 +29,9 @@ class MainMenu : AppCompatActivity(), CoroutineScope {
     private lateinit var mJob: Job
     override val coroutineContext: CoroutineContext
         get() = mJob + Dispatchers.Main
+
+    private lateinit var mainMenuViewModel: MainMenuViewModel
+
 
     private var mBottomSheetBehavior: BottomSheetBehavior<View?>? = null
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -54,19 +61,15 @@ class MainMenu : AppCompatActivity(), CoroutineScope {
         var bottomAppBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
         setSupportActionBar(bottomAppBar)
         configureBackdrop()
-        launch {
-            val lista = ArrayList<Habit>()
-            val adapter = HabitListAdapter(applicationContext, lista)
-            recycleList.adapter = adapter
-            recycleList.layoutManager = LinearLayoutManager(applicationContext)
-            val deffered = async(Dispatchers.Default) {
-                for (habit in DatabaseHeng.GetDatabase(applicationContext).habitDao().getHabits()) {
-                    lista.add(habit)
-                }
-            }
-            deffered.await()
-            adapter.notifyDataSetChanged()
-        }
+
+        val adapter = HabitListAdapter(applicationContext)
+        recycleList.adapter = adapter
+        recycleList.layoutManager = LinearLayoutManager(applicationContext)
+        mainMenuViewModel = ViewModelProviders.of(this).get(MainMenuViewModel::class.java)
+        mainMenuViewModel.getAllHabits().observe(this,
+            Observer<List<Habit>> {
+                    t -> adapter.setHabits(t)
+            })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
