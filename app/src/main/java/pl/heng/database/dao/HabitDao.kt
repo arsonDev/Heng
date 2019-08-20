@@ -9,7 +9,7 @@ import pl.heng.database.model.Habit
 
 @Dao
 interface HabitDao {
-    @Query("SELECT * FROM habit")
+    @Query("SELECT * FROM habit ORDER BY createDate DESC")
     fun getHabits() : LiveData<List<Habit>>
 
     @Query("SELECT * FROM habit WHERE uid = :idHabit ")

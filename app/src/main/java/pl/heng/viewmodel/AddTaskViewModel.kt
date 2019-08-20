@@ -8,9 +8,10 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import pl.heng.database.DatabaseHeng
 import pl.heng.database.model.Habit
 import pl.heng.database.repository.HabitRepository
+import java.time.LocalDateTime
+import java.util.*
 
 class AddTaskViewModel(application: Application) : AndroidViewModel(application), Observable {
 
@@ -25,12 +26,11 @@ class AddTaskViewModel(application: Application) : AndroidViewModel(application)
     @Bindable
     val countDay = MutableLiveData<Int>().apply { value = 4 }
 
-    private val app = application
     private val repository by lazy { HabitRepository(application) }
 
     fun addNewTask() {
         val habit =
-            Habit(taskName.value ?: "", categoryName.value!!, countDay.value!!, endDate.value!!, notifyTime.value!!)
+            Habit(taskName.value ?: "", categoryName.value!!, countDay.value!!, endDate.value!!, notifyTime.value!!, LocalDateTime.now().toString())
         viewModelScope.launch {
             repository.insert(habit)
         }

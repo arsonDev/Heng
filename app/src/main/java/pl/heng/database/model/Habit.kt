@@ -12,7 +12,8 @@ data class Habit(
     @ColumnInfo(name = "category") val category : String,
     @ColumnInfo(name = "countOfWeek") val countOfWeek : Int,
     @ColumnInfo(name = "finalDate") val finalDate : String,
-    @ColumnInfo(name = "remindHour") val remindHour : String
+    @ColumnInfo(name = "remindHour") val remindHour : String,
+    @ColumnInfo(name = "createDate") val createDate : String
  ) : BaseObservable(){
     @PrimaryKey(autoGenerate = true) var uid : Int = 0
 

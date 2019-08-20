@@ -98,8 +98,6 @@ class MainMenu : AppCompatActivity(), CoroutineScope {
                 }
                 mBottomSheetBehavior = bsb
             }
-
         }
     }
-
 }

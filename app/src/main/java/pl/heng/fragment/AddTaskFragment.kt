@@ -1,20 +1,13 @@
 package pl.heng.fragment
 
-import android.annotation.SuppressLint
 import android.app.Dialog
 import android.app.TimePickerDialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
-import android.widget.FrameLayout
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.add_task_fragment.*
@@ -63,6 +56,4 @@ class AddTaskFragment : BottomSheetDialogFragment() {
             }, LocalDateTime.now().hour, LocalDateTime.now().minute,true)
         picker.show()
     }
-
-
 }
