@@ -77,7 +77,6 @@
                         android:layout_marginTop="?attr/actionBarSize"
                         app:behavior_skipCollapsed="true"
                         android:id="@+id/fragment_new_task"
-
                         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
                         android:layout_height="match_parent"
                         android:layout_width="match_parent"

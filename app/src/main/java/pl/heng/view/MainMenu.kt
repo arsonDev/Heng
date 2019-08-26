@@ -1,10 +1,13 @@
 package pl.heng.view
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
 import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_main_menu.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import org.jetbrains.anko.contentView
 import pl.heng.R
 import pl.heng.adapter.HabitListAdapter
 import pl.heng.database.model.Habit
@@ -36,16 +40,7 @@ class MainMenu : AppCompatActivity(), CoroutineScope {
     private var mBottomSheetBehavior: BottomSheetBehavior<View?>? = null
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
-//            R.id.navigation_home -> {
-//                val fragment = FragmentHabitList()
-//                supportFragmentManager.beginTransaction().replace(R.id.container, fragment, fragment.javaClass.getSimpleName())
-//                    .commit()
-//                return@OnNavigationItemSelectedListener true
-//            }
             R.id.navigation_dashboard -> {
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_notifications -> {
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -55,8 +50,11 @@ class MainMenu : AppCompatActivity(), CoroutineScope {
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mJob = Job()
         setContentView(R.layout.activity_main_menu)
+        mJob = Job()
+        var flags = contentView?.systemUiVisibility
+        flags = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        contentView?.systemUiVisibility = flags
 
         var bottomAppBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
         setSupportActionBar(bottomAppBar)
