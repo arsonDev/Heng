@@ -13,6 +13,12 @@ Aplikacja która pomoże Ci zmienić swoje przyzwyczajenia i przypominać o nauc
 * Biblioteki
   * Anko
   
+## Użyte narzędzia
+* Android Studio
+* Git
+* Git flow
+* Gimp
+  
 ## Jak uruchomić
 
 1. Sklonuj kod poleceniem 
