@@ -3,33 +3,43 @@ package pl.heng.viewmodel
 import android.app.Application
 import androidx.databinding.Bindable
 import androidx.databinding.Observable
+import androidx.databinding.ObservableField
 import androidx.databinding.PropertyChangeRegistry
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import pl.heng.database.model.Habit
 import pl.heng.database.repository.HabitRepository
+import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.LocalTime
+
 
 class AddTaskViewModel(application: Application) : AndroidViewModel(application), Observable {
 
     @Bindable
-    val taskName = MutableLiveData<String>().apply { value = "" }
+    val taskName = ObservableField<String>()
     @Bindable
-    val categoryName = MutableLiveData<String>().apply { value = "" }
+    val categoryName = ObservableField<String>()
     @Bindable
-    val endDate = MutableLiveData<String>().apply { value = "20-05-19" }
+    val endDate = ObservableField<LocalDate>().apply {
+        set(LocalDate.now())
+    }
     @Bindable
-    val notifyTime = MutableLiveData<String>().apply { value = "10:30" }
-    @Bindable
-    val countDay = MutableLiveData<Int>().apply { value = 4 }
-
+    val notifyTime = ObservableField<LocalTime>().apply {
+        set(LocalTime.now())
+    }
     private val repository by lazy { HabitRepository(application) }
 
     fun addNewTask() {
         val habit =
-            Habit(taskName.value ?: "", categoryName.value!!, countDay.value!!, endDate.value!!, notifyTime.value!!, LocalDateTime.now().toString())
+            Habit(
+                taskName.get() ?: "TestZadania",
+                categoryName.get() ?: "TestKategori",
+                endDate.get().toString(),
+                notifyTime.get().toString(),
+                LocalDate.now().toString()
+            )
         viewModelScope.launch {
             repository.insert(habit)
         }

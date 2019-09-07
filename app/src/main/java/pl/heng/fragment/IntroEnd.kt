@@ -10,10 +10,7 @@ import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_intro_end.*
-import kotlinx.android.synthetic.main.fragment_intro_end.next
-import kotlinx.android.synthetic.main.slide_fragment_about_app.*
 import pl.heng.R
-import pl.heng.generated.callback.OnClickListener
 import pl.heng.view.MainMenu
 
 class IntroEnd : Fragment() {

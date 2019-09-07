@@ -11,16 +11,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import androidx.room.Room
 import kotlinx.android.synthetic.main.activity_intro.*
 import pl.heng.fragment.IntroEnd
-import pl.heng.database.DatabaseHeng
 import pl.heng.fragment.AboutAppFragment
 import pl.heng.fragment.AboutNewHabitFragment
 import pl.heng.view.animations.FadeOutPageTransformer
 
 
-class MainActivity : AppCompatActivity() {
+class IntroActivity : AppCompatActivity() {
 
     @SuppressLint("CommitPrefEdits")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,10 +27,11 @@ class MainActivity : AppCompatActivity() {
 
         val isIntro = "intro"
         val sharedPreferences : SharedPreferences = this.getPreferences(Context.MODE_PRIVATE)
-        var test = sharedPreferences.getBoolean(isIntro,true)
-        if (!test){
+        var intro = sharedPreferences.getBoolean(isIntro,true)
+        if (!intro){
             var intent = Intent(this,MainMenu::class.java)
             this.startActivity(intent)
+            finish()
         }else {
             window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
             val pagerAdapter = ScreenSlidePagerAdapter(supportFragmentManager)

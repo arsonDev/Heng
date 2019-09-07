@@ -1,43 +1,56 @@
 package pl.heng.adapter
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.habit_item.view.*
-import pl.heng.R.*
+import pl.heng.BR
 import pl.heng.database.model.Habit
-import kotlin.random.Random
+import pl.heng.viewmodel.HabitsViewModel
 
 
-class HabitListAdapter(val context: Context) : RecyclerView.Adapter<HabitViewHolder>() {
-    private var habits : List<Habit> = ArrayList()
+class HabitListAdapter(layoutId : Int , viewModel : HabitsViewModel) : RecyclerView.Adapter<HabitViewHolder>() {
+
+    private var _habits : List<Habit> = ArrayList()
+    private val _layoutId = layoutId
+    private val _viewModel = viewModel
 
     override fun getItemCount(): Int {
-        return habits.size
+        return _habits.size
     }
 
-    @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: HabitViewHolder, position: Int) {
-        holder.habitName.text = habits[position].name
-        holder.stepProgress.max = habits[position].countOfWeek
-        holder.stepProgress.progress  = Random.nextInt(1,7)
+        holder.bind(_viewModel,position)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HabitViewHolder {
-        val layoutInflanter = LayoutInflater.from(context)
-        return HabitViewHolder(layoutInflanter.inflate(layout.habit_item,parent,false))
+        val layoutInflanter = LayoutInflater.from(parent.context)
+        val viewDataBinding : ViewDataBinding = DataBindingUtil.inflate(layoutInflanter,viewType,parent,false)
+        return HabitViewHolder(viewDataBinding)
     }
+
+    override fun getItemViewType(position: Int): Int {
+        return getLayoutIdForPosition(position)
+    }
+
+    private fun getLayoutIdForPosition(position: Int) = _layoutId
 
     fun setHabits(habits : List<Habit>){
-        this.habits = habits
+        this._habits = habits
         notifyDataSetChanged()
     }
+
+    fun getHabit(position: Int) = _habits.get(position)
 }
 
-class HabitViewHolder(view : View) : RecyclerView.ViewHolder(view){
-    val habitName = view.habitName
-    val stepProgress = view.pb
+class HabitViewHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
+
+    fun bind(viewModel : HabitsViewModel,position: Int){
+        viewModel.getHabitAt(position)
+        binding.setVariable(BR.viewModel, viewModel)
+        binding.setVariable(BR.position, position)
+        binding.executePendingBindings()
+    }
+
 }

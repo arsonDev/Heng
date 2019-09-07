@@ -4,14 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
 import pl.heng.database.dao.HabitDao
+import pl.heng.database.dao.HabitHistoryDao
 import pl.heng.database.model.Habit
+import pl.heng.database.model.HabitDoneHistory
 
-@Database(entities = arrayOf(Habit::class), version = 3, exportSchema = false)
+@Database(entities = arrayOf(Habit::class,HabitDoneHistory::class), version = 1, exportSchema = false)
 abstract class DatabaseHeng : RoomDatabase() {
     abstract fun habitDao() : HabitDao
+    abstract fun habitDoneDao() : HabitHistoryDao
 
     companion object {
         @Volatile
