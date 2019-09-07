@@ -36,8 +36,8 @@ Lub inny dowolny edytor
 ## Wykonanie
 __Arkadiusz Kowalczyk__
 
-*Tworzenie oprogramowania, dokumentacji*
+*Tworzenie oprogramowania, dokumentacji, testowanie*
 
 __Piotr Lewiński__
 
-*Planowanie aplikacji, tworzenie grafik*
+*Planowanie aplikacji, tworzenie grafik, testowanie*
