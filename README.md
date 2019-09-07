@@ -3,7 +3,7 @@ Aplikacja która pomoże Ci zmienić swoje przyzwyczajenia i przypominać o nauc
 
 ## Użyte technologie i frameworki
 * Kotlin
-  *Coroutines
+  * Coroutines
 * Android
   * Livedata
   * ViewModel
@@ -11,7 +11,7 @@ Aplikacja która pomoże Ci zmienić swoje przyzwyczajenia i przypominać o nauc
   * Data binding
   * Material Design
 * Biblioteki
-  *Anko
+  * Anko
   
 ## Jak uruchomić
 
@@ -35,6 +35,9 @@ Lub inny dowolny edytor
 
 ## Wykonanie
 __Arkadiusz Kowalczyk__
+
 *Tworzenie oprogramowania, dokumentacji*
+
 __Piotr Lewiński__
+
 *Planowanie aplikacji, tworzenie grafik*
