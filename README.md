@@ -3,12 +3,15 @@ Aplikacja która pomoże Ci zmienić swoje przyzwyczajenia i przypominać o nauc
 
 ## Użyte technologie i frameworki
 * Kotlin
+  *Coroutines
 * Android
   * Livedata
   * ViewModel
   * Room (SQLLite3)
   * Data binding
   * Material Design
+* Biblioteki
+ * Anko
   
 ## Jak uruchomić
 
