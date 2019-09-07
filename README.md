@@ -11,7 +11,7 @@ Aplikacja która pomoże Ci zmienić swoje przyzwyczajenia i przypominać o nauc
   * Data binding
   * Material Design
 * Biblioteki
- * Anko
+  *Anko
   
 ## Jak uruchomić
 
