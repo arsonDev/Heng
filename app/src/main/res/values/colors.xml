@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">@color/white</color>
+    <color name="colorPrimaryDark">@color/white</color>
     <color name="colorAccent">#ffff8b</color>
 
     <color name="black_overlay">#66000000</color>
@@ -22,4 +22,10 @@
     <color name="green_light">#80e27e</color>
     <color name="green">#4caf50</color>
     <color name="green_dark">#087f23</color>
+    <color name="orange">#ffc107</color>
+    <color name="orange_light">#fff350</color>
+    <color name="orange_dark">#c79100</color>
+    <color name="red">#ff9800</color>
+    <color name="red_light">#ff9800</color>
+    <color name="red_dark">#c63f17</color>
 </resources>

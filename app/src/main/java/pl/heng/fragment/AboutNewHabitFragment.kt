@@ -9,6 +9,6 @@ import pl.heng.R
 
 class AboutNewHabitFragment : Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? = inflater.inflate(
-        R.layout.about_new_habit,container,false
+        R.layout.slide_fragment_about,container,false
     )
 }
