@@ -5,14 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import pl.heng.database.dao.HabitDao
-import pl.heng.database.dao.UserDao
+import pl.heng.database.dao.HabitHistoryDao
 import pl.heng.database.model.Habit
-import pl.heng.database.model.User
+import pl.heng.database.model.HabitDoneHistory
 
-@Database(entities = arrayOf(User::class,Habit::class),version = 2,exportSchema = false)
+@Database(entities = arrayOf(Habit::class,HabitDoneHistory::class), version = 1, exportSchema = false)
 abstract class DatabaseHeng : RoomDatabase() {
-    abstract fun userDao(): UserDao
     abstract fun habitDao() : HabitDao
+    abstract fun habitDoneDao() : HabitHistoryDao
 
     companion object {
         @Volatile
@@ -22,6 +22,7 @@ abstract class DatabaseHeng : RoomDatabase() {
             context: Context): DatabaseHeng {
             return INSTANCE ?: synchronized(this) {
                 val tempInstance = INSTANCE
+
                 if (tempInstance != null) {
                     return tempInstance
                 }
@@ -29,7 +30,8 @@ abstract class DatabaseHeng : RoomDatabase() {
                     context.applicationContext,
                     DatabaseHeng::class.java,
                     "DatabaseHeng"
-                ).build()
+                )
+                .build()
                 INSTANCE = instance
                 return instance
             }
