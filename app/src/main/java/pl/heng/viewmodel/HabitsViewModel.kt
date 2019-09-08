@@ -3,6 +3,7 @@ package pl.heng.viewmodel
 import android.app.Application
 import android.widget.Toast
 import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -22,6 +23,7 @@ class HabitsViewModel(application: Application) : AndroidViewModel(application) 
     private val adapter = HabitListAdapter(R.layout.habit_item, this)
     val selected = MutableLiveData<Habit>()
     val emptyVisible = ObservableBoolean(true)
+    val notifiyMessage = MutableLiveData<String>("")
 
     fun getHabits() = habitRepo.getHabitList()
 
@@ -45,9 +47,9 @@ class HabitsViewModel(application: Application) : AndroidViewModel(application) 
             if (!done) {
                 val habitDone = HabitDoneHistory(habit.uid,true,LocalDate.now().toString())
                 habitDoneRepository.insert(habitDone)
-                Toast.makeText(getApplication(),"Brawo za wykonanie zadania : ${habit.name} #${habit.category}",Toast.LENGTH_SHORT).show()
+                notifiyMessage.value = "Brawo za wykonanie zadania : ${habit.name} #${habit.category}"
             }else{
-                Toast.makeText(getApplication(),"Dzisiaj wykonano już zadanie : ${habit.name} #${habit.category}",Toast.LENGTH_SHORT).show()
+                notifiyMessage.value = "Dzisiaj wykonano już zadanie : ${habit.name} #${habit.category}"
             }
         }
     }

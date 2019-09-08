@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main_menu.*
 import org.jetbrains.anko.contentView
 import pl.heng.R
@@ -31,7 +32,12 @@ class MainMenu : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val activityBinding: ActivityMainMenuBinding =
             DataBindingUtil. setContentView(this, R.layout.activity_main_menu)
+        setUI()
+        setViewModel(activityBinding)
+        configureBackdrop()
+    }
 
+    private fun setUI() {
         contentView!!.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
         var bottomAppBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
@@ -52,7 +58,9 @@ class MainMenu : AppCompatActivity() {
                 else -> false
             }
         }
+    }
 
+    private fun setViewModel(activityBinding: ActivityMainMenuBinding) {
         viewModel = ViewModelProviders.of(this).get(HabitsViewModel(application)::class.java)
         activityBinding.vm = viewModel
 
@@ -64,12 +72,15 @@ class MainMenu : AppCompatActivity() {
                 viewModel.setHabitsInAdapter(habits)
             }
         })
-
-        viewModel.selected.observe(this,Observer<Habit> { habit ->
+        viewModel.selected.observe(this, Observer<Habit> { habit ->
             val dialog = HabitInfoFragment.newInstance()
             dialog.show(supportFragmentManager, HabitInfoFragment::class.java.simpleName)
         })
-        configureBackdrop()
+        viewModel.notifiyMessage.observe(this, Observer<String> { message ->
+            var view = if (fab.visibility == View.VISIBLE) fab else bottomAppBar
+            Snackbar.make(container, message, Snackbar.LENGTH_LONG)
+                .setAnchorView(coordinator).show()
+        })
     }
 
     private fun configureBackdrop() {
@@ -98,7 +109,7 @@ class MainMenu : AppCompatActivity() {
             } else {
                 if (backPressedTime + 2000 > System.currentTimeMillis()) {
                     System.exit(2)
-                    exitProcess(1)
+                    exitProcess(-1)
                 } else {
                     Toast.makeText(this, "Naciśnij ponownie aby wyjść", Toast.LENGTH_SHORT).show()
                 }
