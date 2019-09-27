@@ -32,18 +32,9 @@ git clone https://github.com/arsonDev/Heng.git
 ## Wymagania aplikacji
 __Android API 26 -> Android 8.0.0 OREO__
 
-## Wymagania do edycji kodu
-__Android Studio__ 
-```
-https://developer.android.com/studio
-```
-Lub inny dowolny edytor
+## Licencja
+__Wszystkie prawa zastrzeżone 2019__
+
 
 ## Wykonanie
 __Arkadiusz Kowalczyk__
-
-*Tworzenie oprogramowania, dokumentacji, testowanie*
-
-__Piotr Lewiński__
-
-*Planowanie aplikacji, tworzenie grafik, testowanie*
